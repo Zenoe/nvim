@@ -57,3 +57,13 @@ map("n", "<Leader>gwc", "<cmd>:lua require('telescope').extensions.git_worktree.
 
 --- zen-mode
 map("n", "<leader>z", "<cmd>ZenMode<cr>")
+
+
+vim.keymap.set('n', '<leader>a', ':keepjumps normal! ggVG<cr>')
+-- Copy to clipboard.
+vim.keymap.set({'n', 'x'}, 'cp', '"+y')
+-- Paste from clipboard.
+vim.keymap.set({'n', 'x'}, 'cv', '"+p')
+-- Delete without changing the registers
+-- vim.keymap.set({'n', 'x'}, 'x', '"_x')
+-- Select all text in current buffer

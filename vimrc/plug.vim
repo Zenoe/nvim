@@ -1,5 +1,6 @@
 call plug#begin()
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " Plug 'vim-denops/denops.vim'
 " Plug 'Shougo/ddu-ui-ff'
 " Plug 'Shougo/ddu.vim'
