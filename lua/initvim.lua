@@ -8,7 +8,7 @@ endif
 let config_list = [
       \ 'edit.vim',
       \ 'autocmd.vim',
-      \ 'plug.vim'
+      "\ 'plug.vim'
       "\ 'coc.vim'
       \]
 for file in config_list

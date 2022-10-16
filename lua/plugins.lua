@@ -58,11 +58,11 @@ return require("packer").startup {
     use {
       "nvim-telescope/telescope-project.nvim"
     }
-
-    use {
-      "nvim-telescope/telescope-fzf-native.nvim",
-      run = "make"
-    }
+    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
+    -- use {
+    --   "nvim-telescope/telescope-fzf-native.nvim",
+    --   run = "cmake"
+    -- }
 
     use {
       "nvim-telescope/telescope.nvim",

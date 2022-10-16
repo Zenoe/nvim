@@ -26,6 +26,7 @@ map("n", "<Leader>fg", "<cmd>Telescope live_grep<cr>")
 map("n", "<Leader>fb", "<cmd>Telescope buffers<cr>")
 map("n", "<Leader>fr", "<cmd>Telescope bibtex<cr>")
 
+
 --- quicklist
 map("n", "<leader>qn", "<cmd>:cnext<cr>")
 map("n", "<leader>qp", "<cmd>:cprev<cr>")
