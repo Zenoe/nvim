@@ -51,20 +51,15 @@ require("telescope").setup {
         -- the default case_mode is "smart_case"
       },
       base_dirs = {
-        {path = "~/Sources", max_depth = 2}
+        os.getenv("LOCALAPPDATA") .. "/nvim/",
+        {path = "~/.config/"}
       },
       hidden_files = true
     },
-    bibtex = {
-      format = 'plain'
-    }
+    -- bibtex = {
+    --   format = 'plain'
+    -- }
   }
 }
 
 require('telescope').load_extension('fzf')
-
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', 'ff', builtin.find_files, {})
-vim.keymap.set('n', 'fg', builtin.live_grep, {})
-vim.keymap.set('n', 'fb', builtin.buffers, {})
-vim.keymap.set('n', 'fh', builtin.help_tags, {})

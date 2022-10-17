@@ -2,7 +2,10 @@ require "nvim-treesitter.configs".setup {
   indent = {
     enable = true
   },
-  ensure_installed = "all",
+  -- ensure_installed = "all",
+  ensure_installed = {
+  "bash", "c", "cpp", "css", "go", "html", "http", "javascript", "json", "lua", "python", "regex", "typescript", "vim", "yaml"
+  },
   auto_install = true,
   highlight = {
     enable = true, -- enable = true (false will disable the whole extension)

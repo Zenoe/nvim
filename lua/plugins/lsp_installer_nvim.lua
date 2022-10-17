@@ -20,10 +20,14 @@ local function make_server_ready(attach)
     function(server)
       local opts = {}
       opts.on_attach = attach
-
-      -- This setup() function is exactly the same as lspconfig's setup function (:help lspconfig-quickstart)
-      server:setup(opts)
-      vim.cmd [[ do User LspAttachBuffers ]]
+      opts.settings = {
+        Lua = {
+          diagnostics = { globals = {'vim'} }
+        }
+      }
+-- Thissetup() function is exactly the same as lspconfig's setup function (:help lspconfig-quickstart)
+server:setup(opts)
+vim.cmd [[ do User LspAttachBuffers ]]
     end
   )
 end
@@ -36,10 +40,10 @@ local servers = {
   "jdtls", -- for java
   "texlab", -- for latex
   "ltex",
-  "sqlls", -- for sql
+--  "sqlls", -- for sql
   "pylsp", -- for python
   "sumneko_lua", -- for lua
-  "gopls", -- for go
+--  "gopls", -- for go
   "yamlls",
   "bashls",
   "dockerls"

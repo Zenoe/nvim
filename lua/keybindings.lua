@@ -21,11 +21,19 @@ map("n", "<leader>k", ":m .-2<CR>==")
 map("n", "<leader>j", ":m .+1<CR>==")
 
 -- telescope
-map("n", "<Leader>ff", "<cmd>Telescope find_files<cr>")
+map("n", "<Leader>x", "<cmd>Telescope commands<cr>")
+map("n", "<Leader> ", "<cmd>Telescope find_files<cr>")
 map("n", "<Leader>fg", "<cmd>Telescope live_grep<cr>")
 map("n", "<Leader>fb", "<cmd>Telescope buffers<cr>")
-map("n", "<Leader>fr", "<cmd>Telescope bibtex<cr>")
+map("n", "<Leader>fr", "<cmd>Telescope oldfiles<cr>")
+map("n", "<Leader>fp", "<cmd>Telescope project<cr>")
+map("n", "<Leader>f.", "<cmd>lua require('telescope.builtin').find_files( { cwd = vim.fn.expand('%:p:h') })<cr>")
+map("n", "<Leader>/", "<cmd>lua require('telescope.builtin').live_grep( { cwd = vim.fn.expand('%:p:h') })<cr>")
+map("n", "<Leader>'", "<cmd>Telescope resume<cr>")
 
+-- buffer
+map("n", "<Leader>;", "<cmd>:b#<cr>")
+map("n", "zx", "<cmd>bd<cr>")
 
 --- quicklist
 map("n", "<leader>qn", "<cmd>:cnext<cr>")

@@ -11,13 +11,28 @@ return require("packer").startup {
   function(use)
     -- Packer can manage itself
     use "wbthomason/packer.nvim"
-
+    use {
+      'goolord/alpha-nvim',
+      requires = { 'kyazdani42/nvim-web-devicons' },
+      config = function ()
+        require'alpha'.setup(require'alpha.themes.startify'.config)
+      end
+    }
     use {
       -- A collection of common configurations for Neovim's built-in language server client
       "neovim/nvim-lspconfig",
       config = [[ require('plugins/lspconfig') ]]
     }
 
+    use {
+      "airblade/vim-rooter"
+    }
+    use {
+      'numToStr/Comment.nvim',
+      config = function()
+        require('Comment').setup()
+      end
+    }
     use {
       "williamboman/nvim-lsp-installer",
       config = [[ require('plugins/lsp_installer_nvim') ]],
@@ -59,10 +74,6 @@ return require("packer").startup {
       "nvim-telescope/telescope-project.nvim"
     }
     use {'nvim-telescope/telescope-fzf-native.nvim', run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
-    -- use {
-    --   "nvim-telescope/telescope-fzf-native.nvim",
-    --   run = "cmake"
-    -- }
 
     use {
       "nvim-telescope/telescope.nvim",
@@ -73,15 +84,15 @@ return require("packer").startup {
       config = [[ require('plugins/telescope') ]]
     }
 
-    use {
-      "nvim-telescope/telescope-bibtex.nvim",
-      requires = {
-        {"nvim-telescope/telescope.nvim"}
-      },
-      config = function()
-        require "telescope".load_extension("bibtex")
-      end
-    }
+    -- use {
+    --   "nvim-telescope/telescope-bibtex.nvim",
+    --   requires = {
+    --     {"nvim-telescope/telescope.nvim"}
+    --   },
+    --   config = function()
+    --     require "telescope".load_extension("bibtex")
+    --   end
+    -- }
 
     use {
       -- Snippet Engine for Neovim written in Lua.
