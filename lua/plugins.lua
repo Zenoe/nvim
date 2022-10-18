@@ -19,6 +19,10 @@ return require("packer").startup {
       end
     }
     use {
+      "xolox/vim-session",
+      requires = {'xolox/vim-misc'}
+    }
+    use {
       -- A collection of common configurations for Neovim's built-in language server client
       "neovim/nvim-lspconfig",
       config = [[ require('plugins/lspconfig') ]]

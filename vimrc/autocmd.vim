@@ -18,3 +18,6 @@ augroup LargeFiles "{{{1
 
   autocmd BufRead * let f = getfsize(expand('<afile>')) | if f > g:LargeFile || f == -2 | call LargeFile() | endif
 augroup END
+
+
+autocmd FileType help noremap <buffer> q :q<cr>
