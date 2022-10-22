@@ -1,4 +1,6 @@
-require("telescope").load_extension("project")
+require("telescope").load_extension("projects")
+require("telescope").load_extension "file_browser"
+require('telescope').load_extension('fzf')
 
 require("telescope").setup {
   defaults = {
@@ -14,7 +16,7 @@ require("telescope").setup {
       "--iglob",
       "!yarn.lock",
       "--smart-case",
-      "-u"
+      -- "-u"
     },
     -- Default configuration for telescope goes here:
     -- config_key = value,
@@ -51,8 +53,8 @@ require("telescope").setup {
         -- the default case_mode is "smart_case"
       },
       base_dirs = {
-        os.getenv("LOCALAPPDATA") .. "/nvim/",
-        {path = "~/.config/"}
+        {path = "/root/.config/nvim/"},
+        -- os.getenv("LOCALAPPDATA") and os.getenv("LOCALAPPDATA") .. "/nvim/"
       },
       hidden_files = true
     },
@@ -61,5 +63,3 @@ require("telescope").setup {
     -- }
   }
 }
-
-require('telescope').load_extension('fzf')

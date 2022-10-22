@@ -7,7 +7,9 @@ if fn.empty(fn.glob(install_path)) > 0 then
     fn.system({"git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path})
 end
 
-return require("packer").startup {
+local packer = require("packer")
+-- packer.reset()
+packer.startup{
   function(use)
     -- Packer can manage itself
     use "wbthomason/packer.nvim"
@@ -19,6 +21,9 @@ return require("packer").startup {
       end
     }
     use {
+      "terryma/vim-expand-region"
+    }
+    use {
       "xolox/vim-session",
       requires = {'xolox/vim-misc'}
     }
@@ -28,6 +33,9 @@ return require("packer").startup {
       config = [[ require('plugins/lspconfig') ]]
     }
 
+    use {
+      "SirVer/ultisnips"
+    }
     use {
       "airblade/vim-rooter"
     }
@@ -75,10 +83,38 @@ return require("packer").startup {
     }
 
     use {
-      "nvim-telescope/telescope-project.nvim"
+      "ahmedkhalf/project.nvim",
+      config = function()
+        require("project_nvim").setup {
+          -- your configuration comes here
+          -- or leave it empty to use the default settings
+          -- refer to the configuration section below
+        }
+      end
     }
+    use {
+      "AndrewRadev/switch.vim"
+    }
+    -- use {
+    --   "nvim-telescope/telescope-project.nvim"
+    -- }
     use {'nvim-telescope/telescope-fzf-native.nvim', run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
 
+    use { "nvim-telescope/telescope-file-browser.nvim" }
+    use {
+      "akinsho/toggleterm.nvim", tag = '*',
+      config = [[ require('plugins/terminal') ]]
+      -- config = function()
+      --   require("toggleterm").setup{
+      --     -- why? these configurations take effect only after PackerCompile and restart nvim
+      --     size = 20,
+      --   }
+      -- end
+    }
+    -- use {
+    --   "akinsho/toggleterm.nvim", tag = '*',
+    --   config = [[ require('plugins/terminal') ]]
+    -- }
     use {
       "nvim-telescope/telescope.nvim",
       requires = {
@@ -98,6 +134,13 @@ return require("packer").startup {
     --   end
     -- }
 
+
+    use {
+      "LunarWatcher/auto-pairs"
+    }
+    use {
+      "tpope/vim-surround"
+    }
     use {
       -- Snippet Engine for Neovim written in Lua.
       "L3MON4D3/LuaSnip",
@@ -125,8 +168,8 @@ return require("packer").startup {
         "p00f/nvim-ts-rainbow"
       },
       config = [[ require('plugins/treesitter') ]]
-    }
 
+    }
     use {
       "lukas-reineke/indent-blankline.nvim",
       config = [[ require('plugins/blankline') ]]
