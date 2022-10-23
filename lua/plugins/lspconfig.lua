@@ -14,6 +14,10 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
   }
 )
 
+-- setup to let js lsp start
+require('lspconfig')['tsserver'].setup{
+}
+
 require("lspconfig").sumneko_lua.setup {
   settings = {
     Lua = {
@@ -24,43 +28,43 @@ require("lspconfig").sumneko_lua.setup {
   }
 }
 
-require("lspconfig").texlab.setup {
-  settings = {
-    texlab = {
-      auxDirectory = "build/pdf",
-      rootDirectory = ".",
-      chktex = {
-        onEdit = true
-      },
-      build = {
-        executable = "latexmk",
-        forwardSearchAfter = false,
-        onSave = true
-      }
-    }
-  }
-}
-
-require("lspconfig").ltex.setup(
-  {
-    settings = {
-      ltex = {
-        enabled = {"latex", "tex", "bib", "markdown", "text", "txt"},
-        diagnosticSeverity = "information",
-        setenceCacheSize = 2000,
-        additionalRules = {
-          enablePickyRules = true,
-          motherTongue = "de"
-        },
-        trace = {server = "verbose"},
-        dictionary = {},
-        disabledRules = {},
-        hiddenFalsePositives = {}
-      }
-    }
-  }
-)
-
+-- require("lspconfig").texlab.setup {
+--   settings = {
+--     texlab = {
+--       auxDirectory = "build/pdf",
+--       rootDirectory = ".",
+--       chktex = {
+--         onEdit = true
+--       },
+--       build = {
+--         executable = "latexmk",
+--         forwardSearchAfter = false,
+--         onSave = true
+--       }
+--     }
+--   }
+-- }
+--
+-- require("lspconfig").ltex.setup(
+--   {
+--     settings = {
+--       ltex = {
+--         enabled = {"latex", "tex", "bib", "markdown", "text", "txt"},
+--         diagnosticSeverity = "information",
+--         setenceCacheSize = 2000,
+--         additionalRules = {
+--           enablePickyRules = true,
+--           motherTongue = "de"
+--         },
+--         trace = {server = "verbose"},
+--         dictionary = {},
+--         disabledRules = {},
+--         hiddenFalsePositives = {}
+--       }
+--     }
+--   }
+-- )
+--
 -- se LSP diagnostic symbols/signs
 vim.api.nvim_command [[ sign define LspDiagnosticsSignError         text=✗ texthl=LspDiagnosticsSignError       linehl= numhl= ]]
 vim.api.nvim_command [[ sign define LspDiagnosticsSignWarning       text=⚠ texthl=LspDiagnosticsSignWarning     linehl= numhl= ]]

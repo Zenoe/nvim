@@ -6,8 +6,6 @@ local g = vim.g -- global variables
 -- local b     = vim.bo            -- buffer-scoped options
 -- local w     = vim.wo            -- windows-scoped options
 
-vim.api.nvim_create_user_command('Rel', 'source $MYVIMRC', {})
-
 require("tokyonight").setup(
   {
     transparent = true
@@ -34,7 +32,7 @@ set.fillchars = {
   vert = " " -- remove ugly vertical lines on window division
 }
 set.undofile = true
-set.undodir = vim.fn.stdpath("config") .. "/undo"
+set.undodir = vim.fn.stdpath("config") .. "/backup"
 set.clipboard = set.clipboard + "unnamedplus" -- copy & paste
 set.wrap = false -- don't automatically wrap on load
 set.showmatch = true -- show the matching part of the pair for [] {} and ()
@@ -67,24 +65,6 @@ set.hidden = true -- allows you to hide buffers with unsaved changes without bei
 set.inccommand = "split" -- live preview of :s results
 set.shell = "zsh" -- shell to use for `!`, `:!`, `system()` etc.
 -- highlight on yank
-exec(
-  [[
-  augroup YankHighlight
-    autocmd!
-    autocmd TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=500, on_visual=true}
-  augroup end
-]],
-  false
-)
-
--- jump to the last position when reopening a file
-cmd(
-  [[
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
-endif
-]]
-)
 
 -- patterns to ignore during file-navigation
 set.wildignore = set.wildignore + "*.o,*.rej,*.so"
@@ -107,8 +87,6 @@ cmd([[ au BufEnter *.json set ai expandtab shiftwidth=2 tabstop=2 sta fo=croql ]
 --- latex
 g.tex_flavor = "latex"
 cmd([[ autocmd FileType latex,tex,plaintex set wrap linebreak ]])
-
-
 
 function _G.set_terminal_keymaps()
   local opts = {noremap = true}

@@ -25,13 +25,26 @@ augroup helpWin
   autocmd FileType help noremap <buffer> q :q<cr>
 augroup END
 
+augroup autosource
+  au!
+  autocmd bufwritepost *.vim source %
+augroup END
+
 augroup packer_user_config
   autocmd!
   autocmd BufWritePost plugins.lua source <afile> | PackerCompile
 augroup end
-autocmd FileType TelescopePrompt let b:autopairs_enabled = 0
-" au Filetype TelescopePrompt let b:AutoPairs = {'(':')', '<':'>'}
-  " autocmd FileType vim let b:AutoPairs = {'<' : '>', '<?php': '?>'}
-" augroup autopair
-"   au!
-" augroup END
+
+augroup telescope
+  au!
+  autocmd FileType TelescopePrompt let b:autopairs_enabled = 0
+augroup END
+
+" augroup YankHighlight
+"   autocmd!
+"   autocmd TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=500, on_visual=true}
+" augroup end
+
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+endif

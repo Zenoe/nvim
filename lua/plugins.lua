@@ -12,6 +12,8 @@ local packer = require("packer")
 packer.startup{
   function(use)
     -- Packer can manage itself
+    -- it is recommended to put impatient.nvim before any other plugins
+    use { "lewis6991/impatient.nvim", config = [[require('impatient')]] }
     use "wbthomason/packer.nvim"
     use {
       'goolord/alpha-nvim',
@@ -34,7 +36,28 @@ packer.startup{
     }
 
     use {
+      'phaazon/hop.nvim',
+      branch = 'v2', -- optional but strongly recommended
+      config = function()
+        -- you can configure Hop the way you like here; see :h hop-config
+        require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+      end
+    }
+    -- use {'kevinhwang91/nvim-hlslens'}
+    use {
+      -- Show search index and count with nvim-hlslens.
       "SirVer/ultisnips"
+    }
+    use {
+      -- Command line auto-completion via wilder.nvim.
+      "gelguy/wilder.nvim",
+      requires = {'romgrk/fzy-lua-native'},
+      config = [[ require('plugins/wilder') ]]
+      -- config = function()
+      --   require('wilder').setup({
+      --     modes = {':', '/', '?'}
+      --   })
+      -- end
     }
     use {
       "airblade/vim-rooter"
@@ -45,13 +68,24 @@ packer.startup{
         require('Comment').setup()
       end
     }
+
+    -- use { "williamboman/mason.nvim" }
+
     use {
-      "williamboman/nvim-lsp-installer",
+      "williamboman/mason.nvim",
       config = [[ require('plugins/lsp_installer_nvim') ]],
       requires = {
+        "williamboman/mason-lspconfig.nvim",
         "neovim/nvim-lspconfig"
       }
     }
+    -- use {
+    -- "williamboman/nvim-lsp-installer",
+    --   config = [[ require('plugins/lsp_installer_nvim') ]],
+    --   requires = {
+    --     "neovim/nvim-lspconfig"
+    --   }
+    -- }
 
     use {
       -- vscode-like pictograms for neovim lsp completion items Topics
@@ -111,10 +145,6 @@ packer.startup{
       --   }
       -- end
     }
-    -- use {
-    --   "akinsho/toggleterm.nvim", tag = '*',
-    --   config = [[ require('plugins/terminal') ]]
-    -- }
     use {
       "nvim-telescope/telescope.nvim",
       requires = {
@@ -123,17 +153,6 @@ packer.startup{
       },
       config = [[ require('plugins/telescope') ]]
     }
-
-    -- use {
-    --   "nvim-telescope/telescope-bibtex.nvim",
-    --   requires = {
-    --     {"nvim-telescope/telescope.nvim"}
-    --   },
-    --   config = function()
-    --     require "telescope".load_extension("bibtex")
-    --   end
-    -- }
-
 
     use {
       "LunarWatcher/auto-pairs"
