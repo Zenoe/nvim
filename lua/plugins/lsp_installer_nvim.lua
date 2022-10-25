@@ -10,19 +10,17 @@ mason.setup({
             package_uninstalled = "✗"
         }
     },
-  max_concurrent_installers = 4
+  -- default 4
+  -- max_concurrent_installers = 4
 })
 
 masonLspconfig.setup({
   ensure_installed = {
-    "quick-lint-js",
-    -- "tsserver", -- for javascript
-    "jsonls", -- for json
-    -- "jdtls", -- for java
-    -- "texlab", -- for latex
-    -- "ltex",
-    -- "pylsp", -- for python
-    "sumneko_lua", -- for lua
+    "tsserver",
+    "quick_lint_js",
+    "jsonls",
+    "pylsp",
+    "sumneko_lua",
     "yamlls",
     "bashls",
     "dockerls"
@@ -48,22 +46,22 @@ masonLspconfig.setup({
 ---------------------------------------------------
 
 ---------------------------------------------------
-local servers = {
-  "tsserver", -- for javascript
-  "jsonls", -- for json
-  "jdtls", -- for java
-  "texlab", -- for latex
-  "ltex",
-  "pylsp", -- for python
-  "sumneko_lua", -- for lua
---  "gopls", -- for go
-  "yamlls",
-  "bashls",
-  "dockerls"
-}
+-- local servers = {
+--   "tsserver", -- for javascript
+--   "jsonls", -- for json
+--   "jdtls", -- for java
+--   "texlab", -- for latex
+--   "ltex",
+--   "pylsp", -- for python
+--   "sumneko_lua", -- for lua
+-- --  "gopls", -- for go
+--   "yamlls",
+--   "bashls",
+--   "dockerls"
+-- }
 
 -- setup the LS
-require "plugins.lspconfig"
+-- require "plugins.lspconfig"
 -- make_server_ready(On_attach) -- LSP mappings
 
 -- install the LS

@@ -4,6 +4,12 @@ noremap ,e :e <C-R>=expand("%:p:h") . "/" <CR>
 noremap ,t :tabe <C-R>=expand("%:p:h") . "/" <CR>
 noremap ,s :split <C-R>=expand("%:p:h") . "/" <CR>
 
+" relative path
+" :let @+ = expand("%")
+" full path
+nnoremap <leader>yp :let @+ = expand("%:p")<cr>
+" just filename
+nnoremap <leader>yf :let @+ = expand("%:t")<cr>
 
 " nnoremap <Leader>cd :call fzf#run({'source': 'fd -t d -H . ~', 'sink': 'cd'})<CR>
 cnoremap <C-y> <C-r>+

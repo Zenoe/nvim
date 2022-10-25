@@ -17,7 +17,13 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
 -- setup to let js lsp start
 require('lspconfig')['tsserver'].setup{
 }
-
+require'lspconfig'.eslint.setup{
+  -- settings = {
+  --   parserOptions={
+  --     ecmaVersion = 6,
+  --   },
+  -- }
+}
 require("lspconfig").sumneko_lua.setup {
   settings = {
     Lua = {

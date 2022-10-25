@@ -56,15 +56,15 @@ map("n", "<Leader>vrn", "<cmd>lua vim.lsp.buf.rename()<CR>")
 map("n", "<Leader>vh", "<cmd>lua vim.lsp.buf.hover()<CR>")
 map("n", "<Leader>vca", "<cmd>lua vim.lsp.buf.code_action()<CR>")
 map("n", "<Leader>vsd", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>")
-map("n", "<Leader>vn", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>")
-map("n", "<Leader>vp", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>")
+map("n", "]e", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>")
+map("n", "[e", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>")
 map("n", "<Leader>vf", "<cmd>Format<CR>")
 
 -- neogit
 map("n", "<Leader>go", "<cmd>Neogit<CR>")
 map("n", "<Leader>gc", "<cmd>Neogit commit<CR>")
 map("n", "<Leader>gws", "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<cr>")
-map("n", "<Leader>gwc", "<cmd>:lua require('telescope').extensions.git_worktree.create_git_worktree()<cr>")
+map("n", "<Leader>gwc", "<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<cr>")
 
 --- zen-mode
 map("n", "<leader>z", "<cmd>ZenMode<cr>")
@@ -82,7 +82,6 @@ noremap <leader>8 8gt
 noremap <leader>9 9gt
 noremap <leader>0 :tablast<cr>
 ]]
-
 vim.keymap.set('n', '<leader>a', ':keepjumps normal! ggVG<cr>')
 -- Copy to clipboard.
 vim.keymap.set({'n', 'x'}, 'cp', '"+y')
