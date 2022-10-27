@@ -35,6 +35,8 @@ packer.startup{
       config = [[ require('plugins/lspconfig') ]]
     }
 
+
+    -- use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
     use {
       'phaazon/hop.nvim',
       branch = 'v2', -- optional but strongly recommended
@@ -43,6 +45,7 @@ packer.startup{
         require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
       end
     }
+    use {'wellle/targets.vim'}
     -- use {'kevinhwang91/nvim-hlslens'}
     use {
       -- Show search index and count with nvim-hlslens.
@@ -52,7 +55,7 @@ packer.startup{
       -- Command line auto-completion via wilder.nvim.
       "gelguy/wilder.nvim",
       requires = {'romgrk/fzy-lua-native'},
-      config = [[ require('plugins/wilder') ]]
+      -- config = [[ require('plugins/wilder') ]]
       -- config = function()
       --   require('wilder').setup({
       --     modes = {':', '/', '?'}

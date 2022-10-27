@@ -6,8 +6,9 @@ if has('win32')
 endif
 
 let config_list = [
-      \ 'edit.vim',
-      \ 'autocmd.vim',
+\ 'edit.vim',
+\ 'autocmd.vim',
+\ 'wilder.vim'
       "\ 'plug.vim'
       "\ 'coc.vim'
       \]
