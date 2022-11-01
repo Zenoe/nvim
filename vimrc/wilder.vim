@@ -10,6 +10,15 @@ call wilder#setup({
 " 'dir_command'  : for fd      : ['fd', '-td']
 " 'filters'      : use ['cpsm_filter'] for performance, requires cpsm vim plugin
 "                  found at https://github.com/nixprime/cpsm
+
+" call wilder#set_option('pipeline', [
+"       \   wilder#branch(
+"       \     wilder#cmdline_pipeline(),
+"       \     [
+"       \       {_, x -> x[:1] ==# '\v' ? x[2:] : x},
+"       \     ] + wilder#search_pipeline(),
+"       \   ),
+"       \ ])
 call wilder#set_option('pipeline', [
       \   wilder#branch(
       \     wilder#python_file_finder_pipeline({
@@ -18,7 +27,9 @@ call wilder#set_option('pipeline', [
       \       'filters': ['fuzzy_filter', 'difflib_sorter'],
       \     }),
       \     wilder#cmdline_pipeline({
-      \       'fuzzy': 1,
+      \       'fuzzy': 2,
+      \       'set_pcre2_pattern': 1,
+      \       'filters': ['fuzzy_filter'],
       \     }),
       \     wilder#python_search_pipeline(),
       \   ),

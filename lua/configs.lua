@@ -16,7 +16,6 @@ cmd("colorscheme tokyonight")
 
 -- set.guifont = "DroidSansMono Nerd Font 11"
 set.termguicolors = true -- Enable GUI colors for the terminal to get truecolor
-set.list = false -- show whitespace
 -- set.listchars = {
 --   nbsp = "⦸", -- CIRCLED REVERSE SOLIDUS (U+29B8, UTF-8: E2 A6 B8)
 --   extends = "»", -- RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK (U+00BB, UTF-8: C2 BB)

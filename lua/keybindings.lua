@@ -35,7 +35,9 @@ map("n", "<Leader>'", "<cmd>Telescope resume<cr>")
 
 -- buffer
 map("n", "<Leader>;", "<cmd>:b#<cr>")
-map("n", "zx", "<cmd>bd<cr>")
+-- bp command (“buffer previous”) moves us to a different buffer in the current window (bn would work, too),
+-- then bd # (“buffer delete” “alternate file”) deletes the buffer we just moved away from
+map("n", "zx", "<cmd>:bp|bd #<cr>")
 
 --- quicklist
 map("n", "<leader>qn", "<cmd>:cnext<cr>")
@@ -44,7 +46,7 @@ map("n", "<leader>qo", "<cmd>:copen<cr>")
 
 -- lua tree
 map("n", "<Leader>tt", "<cmd>NvimTreeToggle<cr>")
-map("n", "<Leader>tf", "<cmd>NvimTreeFindFileToggle<cr>")
+map("n", "<Leader>tf", "<cmd>:vimTreeFindFileToggle!<cr>")
 map("n", "<Leader>tr", "<cmd>NvimTreeRefresh<cr>")
 
 -- language server
@@ -65,9 +67,6 @@ map("n", "<Leader>go", "<cmd>Neogit<CR>")
 map("n", "<Leader>gc", "<cmd>Neogit commit<CR>")
 map("n", "<Leader>gws", "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<cr>")
 map("n", "<Leader>gwc", "<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<cr>")
-
---- zen-mode
-map("n", "<leader>z", "<cmd>ZenMode<cr>")
 
 -- tab
 vim.cmd[[

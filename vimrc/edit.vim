@@ -9,10 +9,10 @@ noremap ,s :split <C-R>=expand("%:p:h") . "/" <CR>
 nnoremap <silent> <CR> :noh<CR><CR>
 " relative path
 " :let @+ = expand("%")
-" full path
+" copy full path
 vnoremap P "0p
 nnoremap <leader>yp :let @+ = expand("%:p")<cr>
-" just filename
+" copy filename
 nnoremap <leader>yf :let @+ = expand("%:t")<cr>
 " nnoremap <expr> g<c-v> '`[' . getregtype()[0] . '`]'
 nnoremap <expr> gp '`[' . getregtype()[0] . '`]'
@@ -20,7 +20,14 @@ nnoremap <expr> gp '`[' . getregtype()[0] . '`]'
 cnoremap <C-y> <C-r>+
 " clear the last search pattern
 " :let @/ = ""
+function! IndentPaste()
+  execute "normal o\<Esc>p"
+  " execute "normal! ". '`[' . getregtype()[0] . '`]' . '='
+  " or
+  normal gp=
+endfunction
 
+nnoremap zp <Cmd>call IndentPaste()<CR>
 " inoremap { {<CR>}<Esc>ko
 " inoremap { {<CR>}<Up><Enter>
 " inoremap { {}<Left>
@@ -29,8 +36,8 @@ cnoremap <C-y> <C-r>+
 " inoremap [ []<Left>
 " inoremap " ""<Left>
 " inoremap ' ''<Left>
-nnoremap zp o<esc>p==$
 nnoremap z; V$%
+
 
 nnoremap <silent> <C-S> :if expand("%") == ""<CR>browse confirm w<CR>else<CR>confirm w<CR>endif<CR>
 inoremap <silent> <C-S> <c-o>:w<cr>
@@ -45,6 +52,7 @@ nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
 " enables displaying whether 'paste' is turned on in insert mode.
 set showmode
+set nolist
 " not worked
 "let g:AutoPairsFiletypeBlacklist = ['TelescopePrompt']
 
@@ -54,3 +62,14 @@ nnoremap <silent> [c :call
 " jump to the next function
 nnoremap <silent> ]c :call
 \ search('\(\(if\\|for\\|while\\|switch\\|catch\)\_s*\)\@64<!(\_[^)]*)\_[^;{}()]*\zs{', "w")<CR>
+
+inoremap <C-e> <Esc>$a
+inoremap <C-a> <Esc>^i
+inoremap <M-;> <C-r>+
+"" plugin ultisnips
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"

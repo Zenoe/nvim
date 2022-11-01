@@ -26,9 +26,14 @@ packer.startup{
       "terryma/vim-expand-region"
     }
     use {
-      "xolox/vim-session",
-      requires = {'xolox/vim-misc'}
+      "Shatur/neovim-session-manager",
+      config = [[ require('plugins/session-manager') ]]
     }
+
+    -- use {
+    --   "xolox/vim-session",
+    --   requires = {'xolox/vim-misc'}
+    -- }
     use {
       -- A collection of common configurations for Neovim's built-in language server client
       "neovim/nvim-lspconfig",
@@ -40,13 +45,15 @@ packer.startup{
     use {
       'phaazon/hop.nvim',
       branch = 'v2', -- optional but strongly recommended
-      config = function()
-        -- you can configure Hop the way you like here; see :h hop-config
-        require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
-      end
+      config = [[ require('plugins/hop') ]]
+      -- config = function()
+      --   -- you can configure Hop the way you like here; see :h hop-config
+      --   require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+      -- end
     }
     use {'wellle/targets.vim'}
     -- use {'kevinhwang91/nvim-hlslens'}
+    use {'honza/vim-snippets'}
     use {
       -- Show search index and count with nvim-hlslens.
       "SirVer/ultisnips"
@@ -65,10 +72,24 @@ packer.startup{
     use {
       "airblade/vim-rooter"
     }
+
+    use {
+      -- comment jsx
+      "JoosepAlviste/nvim-ts-context-commentstring",
+      config = function ()
+        require'nvim-treesitter.configs'.setup {
+          context_commentstring = {
+            enable = true
+          }
+        }
+      end
+    }
     use {
       'numToStr/Comment.nvim',
       config = function()
-        require('Comment').setup()
+        require('Comment').setup({
+          pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook()
+        })
       end
     }
 
@@ -156,9 +177,9 @@ packer.startup{
       },
       config = [[ require('plugins/telescope') ]]
     }
-
     use {
-      "LunarWatcher/auto-pairs"
+      "windwp/nvim-autopairs",
+      config = function() require("nvim-autopairs").setup {} end
     }
     use {
       "tpope/vim-surround"
@@ -220,11 +241,6 @@ packer.startup{
     }
 
     use {
-      "folke/zen-mode.nvim",
-      config = [[ require('plugins/zen-mode') ]]
-    }
-
-    use {
       "ThePrimeagen/git-worktree.nvim",
       config = [[ require('plugins/git-worktree') ]]
     }
@@ -238,9 +254,7 @@ packer.startup{
       "kmonad/kmonad-vim"
     }
 
-    use {
-      "tpope/vim-obsession"
-    }
+    use { "natecraddock/workspaces.nvim" }
 
     use {
       "lambdalisue/suda.vim"

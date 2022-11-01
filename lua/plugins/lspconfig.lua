@@ -16,6 +16,19 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
 
 -- setup to let js lsp start
 require('lspconfig')['tsserver'].setup{
+    init_options = {
+        preferences = {
+            disableSuggestions = true,
+        },
+    },
+      -- https://stackoverflow.com/a/70294761/3113626
+      -- use the nvim-lsp-ts-utils plugin to filter out this specific diagnostic message while keeping suggestions
+      -- on_attach = function(client, bufnr)
+      --     require('nvim-lsp-ts-utils').setup({
+      --         filter_out_diagnostics_by_code = { 80001 },
+      --     })
+      --     require('nvim-lsp-ts-utils').setup_client(client)
+      -- end,
 }
 require'lspconfig'.eslint.setup{
   -- settings = {
