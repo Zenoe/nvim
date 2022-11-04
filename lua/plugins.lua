@@ -22,6 +22,22 @@ packer.startup{
         require'alpha'.setup(require'alpha.themes.startify'.config)
       end
     }
+
+    -- use {
+    --   ft = "norg",
+    --   after = "nvim-treesitter",
+    --   "nvim-neorg/neorg",
+    --   -- flag to update treesitter parser when updating
+    --   run = ":Neorg sync-parsers",
+    --   config = function()
+    --     require("neorg").setup {
+    --       load = {
+    --         ["core.defaults"] = {}
+    --       }
+    --       -- configuration here
+    --     }
+    --   end,
+    -- }
     use {
       "terryma/vim-expand-region"
     }
@@ -179,7 +195,7 @@ packer.startup{
     }
     use {
       "windwp/nvim-autopairs",
-      config = function() require("nvim-autopairs").setup {} end
+      config = [[ require('plugins/autopairs') ]]
     }
     use {
       "tpope/vim-surround"

@@ -5,6 +5,18 @@ call wilder#setup({
       \ 'accept_key': '<Down>',
       \ 'reject_key': '<Up>',
       \ })
+
+" fuzzy_filter': {ctx, xs, q -> MyFilter(ctx, xs, q)},
+" function! MyFilter(ctx, xs, q)
+"   let l:lastIdx=strlen(a:q) -1
+"   if a:q[lastIdx-1:lastIdx] == "kj"
+"     return [ a:q[0:l:lastIdx-2] ]
+"   endif
+"
+"   " Fallback to fuzzy finding
+"   return wilder#fuzzy_filter(a:ctx, {}, a:xs, a:q)
+" endfunction
+
 " 'file_command' : for ripgrep : ['rg', '--files']
 "                : for fd      : ['fd', '-tf']
 " 'dir_command'  : for fd      : ['fd', '-td']
@@ -29,7 +41,7 @@ call wilder#set_option('pipeline', [
       \     wilder#cmdline_pipeline({
       \       'fuzzy': 2,
       \       'set_pcre2_pattern': 1,
-      \       'filters': ['fuzzy_filter'],
+      \       'fuzzy_filter': wilder#fuzzy_filter(),
       \     }),
       \     wilder#python_search_pipeline(),
       \   ),

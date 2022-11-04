@@ -1,12 +1,14 @@
 set nofoldenable
-nnoremap <leader>m :let @*=trim(execute('messages')) \| echo 'copied' <cr>
+nnoremap <leader>mm :let @*=trim(execute('messages')) \| echo 'copied' <cr>
 " :noremap kj :echo "Hrr, j!"<cr>
 noremap ,e :e <C-R>=expand("%:p:h") . "/" <CR>
 noremap ,t :tabe <C-R>=expand("%:p:h") . "/" <CR>
 noremap ,s :split <C-R>=expand("%:p:h") . "/" <CR>
 
+nnoremap <leader>bx :message<CR>
+
 "This unsets the "last search pattern" register by hitting return
-nnoremap <silent> <CR> :noh<CR><CR>
+nnoremap <silent> <ESC> :noh<CR><CR>
 " relative path
 " :let @+ = expand("%")
 " copy full path
@@ -38,9 +40,9 @@ nnoremap zp <Cmd>call IndentPaste()<CR>
 " inoremap ' ''<Left>
 nnoremap z; V$%
 
-
 nnoremap <silent> <C-S> :if expand("%") == ""<CR>browse confirm w<CR>else<CR>confirm w<CR>endif<CR>
 inoremap <silent> <C-S> <c-o>:w<cr>
+inoremap <silent> <C-l> <C-o>u
 " :noremap <C-s> :w<CR>
 " nnoremap <C-t> :ToggleTerm<CR>
 
