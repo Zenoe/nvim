@@ -48,3 +48,4 @@ if has("autocmd")
 endif
 
 autocmd BufWritePre *.tsx,*.ts,*.jsx,*.js EslintFixAll
+autocmd FileType netrw nmap <silent> <buffer> <Esc> :bd<cr>

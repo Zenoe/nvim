@@ -42,7 +42,7 @@ packer.startup{
       "terryma/vim-expand-region"
     }
     use {
-      "Shatur/neovim-session-manager",
+      "natecraddock/sessions.nvim",
       config = [[ require('plugins/session-manager') ]]
     }
 
@@ -67,8 +67,9 @@ packer.startup{
       --   require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
       -- end
     }
+    use{'tpope/vim-vinegar'}
     use {'wellle/targets.vim'}
-    -- use {'kevinhwang91/nvim-hlslens'}
+    use {'andymass/vim-matchup'}
     use {'honza/vim-snippets'}
     use {
       -- Show search index and count with nvim-hlslens.
@@ -250,11 +251,11 @@ packer.startup{
       config = [[ require('plugins/neogit') ]]
     }
 
-    use {
-      "kyazdani42/nvim-tree.lua",
-      requires = "kyazdani42/nvim-web-devicons",
-      config = [[ require('plugins/nvim-tree') ]]
-    }
+    -- use {
+    --   "kyazdani42/nvim-tree.lua",
+    --   requires = "kyazdani42/nvim-web-devicons",
+    --   config = [[ require('plugins/nvim-tree') ]]
+    -- }
 
     use {
       "ThePrimeagen/git-worktree.nvim",

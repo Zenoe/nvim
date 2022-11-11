@@ -1,5 +1,8 @@
 
 -- need restart nvim to take effect
+-- c-\ with prefix 'count' toggle the count-th terminal
+-- the number of firstly created terminal is 1, the secondly is 2 and so on
+-- cmd :ToggleTermToggleAll  to show all term
 require("toggleterm").setup {
   -- size can be a number or function which is passed the current terminal
   size = 20,
@@ -43,7 +46,7 @@ end
 
 local M = {}
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
--- vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
+vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 -- toggle with directory of current buffer
 function M.nnn_toggle()
   local term = require("toggleterm.terminal").Terminal

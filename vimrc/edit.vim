@@ -1,10 +1,12 @@
 set nofoldenable
+let g:loaded_matchit = 1
 nnoremap <leader>mm :let @*=trim(execute('messages')) \| echo 'copied' <cr>
 " :noremap kj :echo "Hrr, j!"<cr>
 noremap ,e :e <C-R>=expand("%:p:h") . "/" <CR>
 noremap ,t :tabe <C-R>=expand("%:p:h") . "/" <CR>
 noremap ,s :split <C-R>=expand("%:p:h") . "/" <CR>
-
+" highlight current word without moving cursor
+nnoremap gn :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 nnoremap <leader>bx :message<CR>
 
 "This unsets the "last search pattern" register by hitting return
@@ -75,3 +77,14 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
+
+
+" command line mode
+cnoremap <M-a> <Home>
+cnoremap <M-e> <End>
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+cnoremap <C-b> <Left>
+cnoremap <C-f> <Right>
+cnoremap <M-b> <S-Left>
+cnoremap <M-f> <S-Right>

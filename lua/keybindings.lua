@@ -1,9 +1,11 @@
 local map = require("utils").map
 
-vim.g.mapleader = " "
+vim.api.nvim_create_user_command('Rel', 'source $MYVIMRC', {})
 
+-- toggle line break
+map("n", "<leader>rl", ":w | :source %<CR>", {})
 -- wrap
-map("n", "<Leader>w", ":set wrap! linebreak!<cr>")
+map("n", "<Leader>lb", ":set wrap! linebreak!<cr>")
 map("n", "j", "gj")
 map("n", "k", "gk")
 
@@ -15,26 +17,33 @@ map("n", "n", "nzzzv")
 map("n", "N", "Nzzzv")
 map("n", "J", "mzJ`z")
 --- moving text
-map("v", "J", ":m '>+1<CR>gv=gv")
 map("v", "K", ":m '<-2<CR>gv=gv")
-map("n", "<leader>k", ":m .-2<CR>==")
+map("v", "J", ":m '>+1<CR>gv=gv")
 map("n", "<leader>j", ":m .+1<CR>==")
+map("n", "<leader>k", ":m .-2<CR>==")
 
 -- telescope
-map("n", "<Leader>x", "<cmd>Telescope commands<cr>")
 map("n", "<Leader> ", "<cmd>Telescope find_files<cr>")
 map("n", "<Leader>.", "<cmd>Telescope file_browser path=%:p:h<cr>")
 map("n", "<Leader>fg", "<cmd>Telescope live_grep<cr>")
 map("n", "<Leader>*", "<cmd>Telescope grep_string<cr>")
-map("n", "<Leader>bb", "<cmd>Telescope buffers<cr>")
 map("n", "<Leader>fr", "<cmd>Telescope oldfiles<cr>")
 map("n", "<Leader>fp", "<cmd>Telescope projects<cr>")
 map("n", "<Leader>f.", "<cmd>lua require('telescope.builtin').find_files( { cwd = vim.fn.expand('%:p:h') })<cr>")
 map("n", "<Leader>/", "<cmd>lua require('telescope.builtin').live_grep( { cwd = vim.fn.expand('%:p:h') })<cr>")
 map("n", "<Leader>'", "<cmd>Telescope resume<cr>")
 
+-- hop
+map("n", "<Leader>w", "<cmd>HopWord<cr>")
+map("n", "<Leader>hc", "<cmd>HopChar2<cr>")
+map("n", "<Leader>ha", "<cmd>HopLineAC<cr>")
+map("n", "<Leader>hl", "<cmd>HopLine<cr>")
+
 -- buffer
+map("n", "<Leader>bb", "<cmd>Telescope buffers<cr>")
 map("n", "<Leader>;", "<cmd>:b#<cr>")
+map("n", "[b", "<cmd>:bp<cr>")
+map("n", "]b", "<cmd>:bn<cr>")
 -- bp command (“buffer previous”) moves us to a different buffer in the current window (bn would work, too),
 -- then bd # (“buffer delete” “alternate file”) deletes the buffer we just moved away from
 map("n", "zx", "<cmd>:bp|bd #<cr>")
@@ -44,10 +53,10 @@ map("n", "<leader>qn", "<cmd>:cnext<cr>")
 map("n", "<leader>qp", "<cmd>:cprev<cr>")
 map("n", "<leader>qo", "<cmd>:copen<cr>")
 
--- lua tree
-map("n", "<Leader>tt", "<cmd>NvimTreeToggle<cr>")
-map("n", "<Leader>tf", "<cmd>:vimTreeFindFileToggle!<cr>")
-map("n", "<Leader>tr", "<cmd>NvimTreeRefresh<cr>")
+-- -- lua tree
+-- map("n", "<Leader>tt", "<cmd>NvimTreeToggle<cr>")
+-- map("n", "<Leader>tf", "<cmd>:vimTreeFindFileToggle!<cr>")
+-- map("n", "<Leader>tr", "<cmd>NvimTreeRefresh<cr>")
 
 -- language server
 map("n", "<Leader>vd", "<cmd>lua vim.lsp.buf.definition()<CR>")
@@ -81,11 +90,8 @@ noremap <leader>8 8gt
 noremap <leader>9 9gt
 noremap <leader>0 :tablast<cr>
 ]]
-vim.keymap.set('n', '<leader>a', ':keepjumps normal! ggVG<cr>')
--- Copy to clipboard.
-vim.keymap.set({'n', 'x'}, 'cp', '"+y')
--- Paste from clipboard.
-vim.keymap.set({'n', 'x'}, 'cv', '"+p')
--- Delete without changing the registers
--- vim.keymap.set({'n', 'x'}, 'x', '"_x')
+map('n', '<leader>a', ':keepjumps normal! ggVG<cr>')
 -- Select all text in current buffer
+
+-- edit
+map("n", "<Leader>st", "<cmd>Switch<CR>")
