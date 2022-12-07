@@ -1,3 +1,18 @@
+"Esc
+
+" Map key chord `jk` or 'kj' to <Esc>.
+" press tow keys almost simultaneously
+let g:esc_j_lasttime = 0
+let g:esc_k_lasttime = 0
+function! JKescape(key)
+	if a:key=='j' | let g:esc_j_lasttime = reltimefloat(reltime()) | endif
+	if a:key=='k' | let g:esc_k_lasttime = reltimefloat(reltime()) | endif
+	let l:timediff = abs(g:esc_j_lasttime - g:esc_k_lasttime)
+	return (l:timediff <= 0.05 && l:timediff >=0.001) ? "\b\e" : a:key
+endfunction
+inoremap <expr> j JKescape('j')
+inoremap <expr> k JKescape('k')
+
 set nofoldenable
 let g:loaded_matchit = 1
 nnoremap <leader>mm :let @*=trim(execute('messages')) \| echo 'copied' <cr>
@@ -19,9 +34,11 @@ nnoremap <leader>yp :let @+ = expand("%:p")<cr>
 " copy filename
 nnoremap <leader>yf :let @+ = expand("%:t")<cr>
 " nnoremap <expr> g<c-v> '`[' . getregtype()[0] . '`]'
+" select last pasted block
 nnoremap <expr> gp '`[' . getregtype()[0] . '`]'
 " nnoremap <Leader>cd :call fzf#run({'source': 'fd -t d -H . ~', 'sink': 'cd'})<CR>
 cnoremap <C-y> <C-r>+
+noremap ;b :b<space>
 " clear the last search pattern
 " :let @/ = ""
 function! IndentPaste()
@@ -88,3 +105,14 @@ cnoremap <C-b> <Left>
 cnoremap <C-f> <Right>
 cnoremap <M-b> <S-Left>
 cnoremap <M-f> <S-Right>
+
+" color
+"to Show whitespace, MUST be inserted BEFORE the colorscheme command
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=grey
+colorscheme tokyonight
+" TabLineSel - is the current (so to say) active tab label.
+" TabLine - are the labels which are not currently active.
+" TabLineFill - is the remaining of the tabline where there is no labels (background).
+hi TabLine      guifg=#111 guibg=#222 gui=none ctermfg=254 ctermbg=238 cterm=none
+hi TabLineSel   guifg=#00ff00 guibg=#222 gui=bold ctermfg=231 ctermbg=235 cterm=bold
+hi TabLineFill  guifg=#999 guibg=#222 gui=none ctermfg=254 ctermbg=238 cterm=none

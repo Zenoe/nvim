@@ -10,10 +10,6 @@ require("sessions").setup({
   session_filepath = ".nvim/session",
 })
 
-vim.cmd [[
-nnoremap <leader>ss :SessionsSave<Space>
-nnoremap <leader>sl :SessionsLoad<Space>
-]]
 
 -- map("n", "<Leader>ss", "<cmd>echo 'xx' <cr>")
 -- :SessionsSave[!] [path]

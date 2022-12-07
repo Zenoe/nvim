@@ -88,10 +88,16 @@ noremap <leader>6 6gt
 noremap <leader>7 7gt
 noremap <leader>8 8gt
 noremap <leader>9 9gt
-noremap <leader>0 :tablast<cr>
 ]]
 map('n', '<leader>a', ':keepjumps normal! ggVG<cr>')
 -- Select all text in current buffer
 
 -- edit
 map("n", "<Leader>st", "<cmd>Switch<CR>")
+
+-- search in yank ring
+map("n", "<Leader>sy", "<cmd>YRShow<CR>")
+
+-- session
+map("n", "<leader>ss", ":SessionsSave<Space>")
+map("n", "<leader>sl", ":SessionsLoad<Space>")

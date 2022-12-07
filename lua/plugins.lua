@@ -71,6 +71,7 @@ packer.startup{
     use {'wellle/targets.vim'}
     use {'andymass/vim-matchup'}
     use {'honza/vim-snippets'}
+    use {'vim-scripts/YankRing.vim'}
     use {
       -- Show search index and count with nvim-hlslens.
       "SirVer/ultisnips"
